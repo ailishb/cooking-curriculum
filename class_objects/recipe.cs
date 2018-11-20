@@ -34,13 +34,13 @@ public class Recipe
 	{
         if (CookingDB.verifyRecipeID(RecipeID) == true)
 		{
-            id = RecipeID;
-            Name = RecipeDB.getTitleById(id);
-            Author = RecipeDB.getAuthorById(id);
-            //RecipeCoverImageURL = RecipeDB.getRecipeCoverImageById(id);
-            RecipeSteps = RecipeDB.getRecipesById(id);
-            Ingredients = RecipeDB.getIngredientsById(id);
-            //RecipeImages = RecipeDB.getRecipeImagesById(id);
+		    id = RecipeID;
+		    Name = RecipeDB.getTitleById(id);
+		    Author = RecipeDB.getAuthorById(id);
+		    //RecipeCoverImageURL = RecipeDB.getRecipeCoverImageById(id);
+		    RecipeSteps = RecipeDB.getRecipesById(id);
+		    Ingredients = RecipeDB.getIngredientsById(id);
+		    //RecipeImages = RecipeDB.getRecipeImagesById(id);
 		}
 		else
 		{
