@@ -32,7 +32,7 @@ public class Recipe
 	// Constructor that matches the recipe name to the DB and populates class fields members
 	public Recipe(int RecipeID)
 	{
-        if (CookingDB.verifyRecipeID(RecipeID) == true)
+      	  	if (CookingDB.verifyRecipeID(RecipeID) == true)
 		{
 		    id = RecipeID;
 		    Name = RecipeDB.getTitleById(id);
