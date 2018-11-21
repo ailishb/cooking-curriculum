@@ -1,9 +1,13 @@
-DROP TABLE `course`
-DROP TABLE `courseTags`
-DROP TABLE `recipe`
-DROP TABLE `courseRecipes`
-DROP TABLE `users`
-DROP TABLE `userCourseEnrollment`
+DROP TABLE `courseTags`;
+DROP TABLE `courseRecipes`;
+DROP TABLE `userCourseEnrollment`;
+DROP TABLE `recipeCompletion`;
+DROP TABLE `recipeSteps`;
+DROP TABLE `recipeTags`;
+DROP TABLE `recipeRatings`;
+DROP TABLE `users`;
+DROP TABLE `recipe`;
+DROP TABLE `course`;
 
 
 CREATE TABLE `course` (
@@ -65,17 +69,6 @@ CREATE TABLE `userCourseEnrollment` (
 	CONSTRAINT `userID_userCourseEnrollment_fk`
 		FOREIGN KEY (`userID`)
 		REFERENCES `users`(`userID`)
-		ON DELETE CASCADE
-);
-
-CREATE TABLE `recipeTags` (
-	`recipeTagID` int(10) NOT NULL AUTO_INCREMENT PRIMARY KEY,
-	`recipeID` int(10) NOT NULL,
-	`tagType` varchar(80) NOT NULL,
-	`tagDescription` varchar(80) NOT NULL,
-	CONSTRAINT `recipeID_recipeTags_fk`
-		FOREIGN KEY (`recipeID`)
-		REFERENCES `recipe`(`recipeID`)
 		ON DELETE CASCADE
 );
 
