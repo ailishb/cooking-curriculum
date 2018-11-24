@@ -1,0 +1,33 @@
+﻿<Page
+    x:Class="CookingCurriculum.MainPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:CookingCurriculum"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+
+    <StackPanel>
+        <StackPanel>
+            <Button Name="MyCourses" Content="My Courses" FontSize="28" Margin="50,50,50,25" Width="250" Height="50" Click="MyCourses_Click" />
+            <Button Name="CourseCatalog" Content="Course Catalog" FontSize="28" Margin="50,25,50,50" Width="250" Height="50" Click="CourseCatalog_Click"/>
+        </StackPanel>
+        
+        <Popup VerticalOffset="-200" HorizontalOffset="50" x:Name="StandardPopup">
+            <Border BorderBrush="{StaticResource ApplicationForegroundThemeBrush}" 
+                Background="{StaticResource ApplicationPageBackgroundThemeBrush}"
+                BorderThickness="2" Width="250" Height="250">
+                <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
+                    <TextBlock Text="You have not started any courses. Please visit the course catalog." TextWrapping="Wrap" FontSize="18" Margin="2" HorizontalAlignment="Center"/>
+                    <Button Content="Close" Margin="0,30,0,0" Click="ClosePopupClicked" HorizontalAlignment="Center"/>
+                </StackPanel>
+            </Border>
+        </Popup>
+
+        <!--
+        <Button Name="AddCourse" Content="Add Course" FontSize="28" Margin="50,25,50,50" Width="250" Height="50" Click="AddCourse_Click"/>
+        -->
+
+    </StackPanel>
+</Page>
