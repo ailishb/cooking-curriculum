@@ -152,3 +152,6 @@ ALTER TABLE recipeSteps
   
 ALTER TABLE recipeSteps
   ADD COLUMN stepOrder varchar(80) NOT NULL DEFAULT 0;
+  
+ ALTER TABLE recipe
+  ADD COLUMN timeToCookMins int NOT NULL DEFAULT 30;
