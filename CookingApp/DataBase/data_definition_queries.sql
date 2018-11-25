@@ -128,3 +128,27 @@ CREATE TABLE `recipeCompletion` (
 		REFERENCES `users`(`userID`)
 		ON DELETE CASCADE
 );
+
+CREATE TABLE `recipeIngredients` (
+	`ingredientID` int(10) NOT NULL AUTO_INCREMENT PRIMARY KEY,
+	`recipeID` int(10) NOT NULL,
+	`description` varchar(40) NOT NULL,
+	`unit` varchar(40) NOT NULL,
+	`amount` int(10) NOT NULL,
+	CONSTRAINT `recipeID_recipeIngredients_fk`
+		FOREIGN KEY (`recipeID`)
+		REFERENCES `recipe`(`recipeID`)
+		ON DELETE CASCADE
+);
+
+ALTER TABLE recipe
+  ADD COLUMN img_url varchar(80) NOT NULL DEFAULT "~/images/defaultrecipe.jpg";
+ 
+ALTER TABLE recipe
+  ADD COLUMN img_url varchar(80) NOT NULL DEFAULT "~/images/defaultrecipe.jpg";
+
+ALTER TABLE recipeSteps
+  ADD COLUMN img_url varchar(80) NOT NULL DEFAULT "~/images/defaultrecipestep.jpg";
+  
+ALTER TABLE recipeSteps
+  ADD COLUMN stepOrder varchar(80) NOT NULL DEFAULT 0;
