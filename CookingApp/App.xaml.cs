@@ -27,9 +27,12 @@ namespace CookingCurriculum
         /// executed, and as such is the logical equivalent of main() or WinMain().
         /// </summary>
         /// 
-        /// creating database connection string
+        /// creating database connection string for Amazon RDS
         private string connectionString =
       @"server=tcp:db-instance.cr14309hoksh.us-east-2.rds.amazonaws.com, 3306;UID=admin;PWD=tinykittens";
+        //string for OSU database
+        //private string connectionString =
+        //@"server=tcp:classmysql.engr.oregonstate.edu;UID=cs361_buchenn;PWD=tinykittens";
 
         //create method to get the string
         public string ConnectionString { get => connectionString; set => connectionString = value; }
