@@ -119,7 +119,7 @@
 
         <StackPanel Orientation="Horizontal" Grid.Row="4" VerticalAlignment="Bottom" HorizontalAlignment="Center">
             <Button Content="Back To Recipes" Margin="0,0,50,25" Visibility="Collapsed"/>
-            <Button Content="Begin Recipes" Margin="0,0,0,25"/>
+            <Button Content="Begin Recipes" Margin="0,0,0,25" Click="BeginRecipesButton_Click"/>
         </StackPanel>
         
     </Grid>

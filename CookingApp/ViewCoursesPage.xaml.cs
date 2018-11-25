@@ -66,6 +66,13 @@ namespace CookingCurriculum
             }
         }
 
+        private void BackMainPageButton_Click(object sender, RoutedEventArgs e)
+        {
+               // navigate to the main curriculum page
+               Frame rootFrame = Window.Current.Content as Frame;
+               rootFrame.Navigate(typeof(MainPage));
+          }
+
         // navigate to the course and add it to the started courses page
         private void BeginCourseButton_Click(object sender, RoutedEventArgs e)
         {
@@ -86,5 +93,5 @@ namespace CookingCurriculum
         {
             // should add a pop up for the preview
         }
-    }
+     }
 }

@@ -1,0 +1,31 @@
+﻿<Page
+    x:Class="CookingCurriculum.CurrentRecipesStepsPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:CookingCurriculum"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+
+     <Grid>
+          <Grid.RowDefinitions>
+               <RowDefinition Height="Auto" />
+               <RowDefinition Height="Auto" />
+               <RowDefinition Height="Auto" />
+               <RowDefinition Height="Auto" />
+               <RowDefinition Height="*" />
+          </Grid.RowDefinitions>
+
+          <TextBlock Text="Recipe:" Grid.Row="0" HorizontalAlignment="Center" FontSize="32" />
+          <TextBlock Name="RecipeName" Grid.Row="1" HorizontalAlignment="Center" FontSize="32" FontWeight="Bold" Margin="0,5,0,25" />
+
+          <FlipView x:Name="RecipeImages" HorizontalAlignment="Center" Margin="0,65,0,0" Grid.Row="4" VerticalAlignment="Top" Width="1734" Height="767"/>
+          
+          <Button Name="BackToActiveRecipesButton" Content="Back" Grid.Row="0" Grid.ColumnSpan="2" FontSize="12" Padding="5" Margin="15" Click="BackToActiveRecipesButton_Click"/>
+
+          <StackPanel Orientation="Horizontal" Grid.Row="4" VerticalAlignment="Bottom" HorizontalAlignment="Center">
+               <Button Content="Finish" Margin="0,0,0,25" Click="FinishRecipesButton_Click"/>
+          </StackPanel>
+     </Grid>
+</Page>

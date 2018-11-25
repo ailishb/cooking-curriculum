@@ -108,6 +108,9 @@
     <Compile Include="Classes\OtherClasses\user.cs" />
     <Compile Include="Classes\Recipe.cs" />
     <Compile Include="Classes\RecipeDescription.cs" />
+    <Compile Include="CurrentRecipesStepsPage.xaml.cs">
+      <DependentUpon>CurrentRecipesStepsPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="DataBase\DBConnection.cs" />
     <Compile Include="MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
@@ -153,6 +156,10 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Page Include="ActiveRecipePage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="CurrentRecipesStepsPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

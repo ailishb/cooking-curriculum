@@ -24,7 +24,8 @@ namespace CookingCurriculum
         // hold data for the grid view
         public ObservableCollection<Ingredient> ingredients;
         public Recipe recipe;
-        public string m_courseName;
+        public string courseName;
+        public string recipeName;
 
         public ActiveRecipePage()
         {
@@ -41,8 +42,8 @@ namespace CookingCurriculum
             // get out the course and recipe names
             var data = e.Parameter as List<string>;
 
-            string courseName = data[0];
-            string recipeName = data[1];
+            courseName = data[0];
+            recipeName = data[1];
 
             // set the recipe name on the page
             RecipeName.Text = recipeName;
@@ -80,8 +81,6 @@ namespace CookingCurriculum
             }
 
             ExperienceLevelTextBlock.Text = " Beginner";
-
-            m_courseName = courseName;
         }
 
         private void IngredientsButton_Click(object sender, RoutedEventArgs e)
@@ -122,11 +121,21 @@ namespace CookingCurriculum
 
         private void BackToRecipesButton_Click(object sender, RoutedEventArgs e)
         {
-
-
             // navigate to the View Recipes page passing it the name of the course
             Frame rootFrame = Window.Current.Content as Frame;
-            rootFrame.Navigate(typeof(ViewRecipesPage), m_courseName);
+            rootFrame.Navigate(typeof(ViewRecipesPage), courseName);
+        }
+
+        private void BeginRecipesButton_Click(object sender, RoutedEventArgs e)
+        {
+               // create a List to send to the Activ Recipes page
+               List<string> sendData = new List<string>();
+
+               sendData.Add(courseName);
+               sendData.Add(recipeName);
+               // navigate to the CurrentRecipesStepsPage page
+               Frame rootFrame = Window.Current.Content as Frame;
+               rootFrame.Navigate(typeof(CurrentRecipesStepsPage), sendData);
         }
     }
 }
