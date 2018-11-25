@@ -3,7 +3,7 @@
  * then the class will populate the fields. This class
  * should be immutable (read-only) once initialized by the constructor
  */
- 
+ /*
 public class Recipe
 {
     public int id { get; }
@@ -15,7 +15,7 @@ public class Recipe
 	public int Description {get; }
 	
 	//Dictionary of recipes as <ingredient name, quantity>
-	public Dictionary<string, double> Ingredients { get; }
+	public System.Collections.Generic.Dictionary<string, double> Ingredients { get; }
 	
 	//Dictionary of recipe image as <step number, image URL>
 	//public Dictionary<int, string> RecipeImages { get; }
@@ -48,3 +48,4 @@ public class Recipe
 		}
 	}
 }
+*/

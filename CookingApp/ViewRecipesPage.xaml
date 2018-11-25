@@ -1,0 +1,63 @@
+﻿<Page
+    x:Class="CookingCurriculum.ViewRecipesPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:CookingCurriculum"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:data="using:CookingCurriculum.Classes"
+    mc:Ignorable="d"
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="8*" />
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+
+        <Button Name="BackToCoursesButton" Content="Back to Courses" Grid.Row="0" Grid.ColumnSpan="2" FontSize="14" Padding="5" Margin="15" Click="BackToCoursesButton_Click"/>
+
+        <TextBlock Name="CourseName" Grid.Row="0" Grid.Column="1" HorizontalAlignment="Center" FontSize="28" Margin="0,30,0,10"/>
+
+        <ProgressBar Name="RecipeProgressBar" Value="1" Grid.Row="1" Grid.Column="1" HorizontalAlignment="Center" Width="250" Height="10" Margin="0,0,0,20"/>
+
+        <Border BorderBrush="{StaticResource ApplicationForegroundThemeBrush}" 
+                Background="{StaticResource ApplicationPageBackgroundThemeBrush}"
+                Grid.Row="2" Grid.Column="1"
+                BorderThickness="2" Height="Auto" Margin="0,20,0,50">
+
+            <GridView x:Name="RecipeDescriptionListView" ItemsSource="{x:Bind recipeDescriptions, Mode=OneWay}" IsItemClickEnabled="False" HorizontalAlignment="Center" >
+                <GridView.ItemTemplate>
+                    <DataTemplate x:Name="RecipeDescriptionDataTemplate" x:DataType="data:RecipeDescription" >
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="*" />
+                            </Grid.RowDefinitions>
+
+                            <TextBlock Name="RecipeTitleTextBlock" Text="{x:Bind m_name, Mode=OneWay}" Grid.Row="0" HorizontalAlignment="Center" Margin="5" />
+
+                            <Image Name="RecipeImage" Source="Assets/StoreLogo.png" Grid.Row="1" HorizontalAlignment="Center" MaxHeight="100" MaxWidth="100"/>
+
+                            <TextBlock Name="RecipeDescriptionTextBlock" Text="{x:Bind m_description, Mode=OneWay}" Grid.Row="2" HorizontalAlignment="Center" TextWrapping="Wrap" Margin="5" />
+
+                            <StackPanel Orientation="Horizontal" Grid.Row="3" VerticalAlignment="Bottom" HorizontalAlignment="Center">
+                                <Button Name="PreviewButton" Content="Preview" Margin="5" Click="PreviewButton_Click"/>
+                                <Button Name="StartRecipeButton" Content="Let's Cook!" Margin="5" Click="StartRecipeButton_Click"/>
+                            </StackPanel>
+
+                        </Grid>
+                    </DataTemplate>
+                </GridView.ItemTemplate>
+            </GridView>
+        </Border>
+    </Grid>
+</Page>

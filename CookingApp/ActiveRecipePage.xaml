@@ -1,0 +1,126 @@
+﻿<Page
+    x:Class="CookingCurriculum.ActiveRecipePage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:CookingCurriculum"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:data="using:CookingCurriculum.Classes"
+    mc:Ignorable="d"
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+
+        <Button Name="BackToRecipesButton" Content="Back to Recipes" Grid.Row="0" Grid.ColumnSpan="2" FontSize="12" Padding="5" Margin="15" Click="BackToRecipesButton_Click"/>
+
+
+        <TextBlock Text="Recipe:" Grid.Row="0" HorizontalAlignment="Center" FontSize="32" />
+        <TextBlock Name="RecipeName" Grid.Row="1" HorizontalAlignment="Center" FontSize="32" FontWeight="Bold" Margin="0,5,0,25" />
+
+        <StackPanel Orientation="Horizontal" Grid.Row="2" HorizontalAlignment="Center" Margin="0,0,0,20">
+            <TextBlock Text="Level: " FontSize="12"/>
+            <TextBlock Name="ExperienceLevelTextBlock" FontSize="12"/>
+        </StackPanel>
+
+        <Grid Grid.Row="3" >
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+
+            <Border Name="IngredientsTab"
+                BorderBrush="{StaticResource ApplicationForegroundThemeBrush}" 
+                Background="{StaticResource ApplicationPageBackgroundThemeBrush}"
+                Grid.Row="0"
+                BorderThickness="2" Height="Auto" Margin="20,0,20,0">
+
+                <Button Name="IngredientsButton" Content="Ingredients" Margin="5" Background="Black" Width="200" HorizontalContentAlignment="Left" Click="IngredientsButton_Click"/>
+            </Border>
+
+            <Border Name="IngredientsDropDown"
+                BorderBrush="{StaticResource ApplicationForegroundThemeBrush}" 
+                Background="{StaticResource ApplicationPageBackgroundThemeBrush}"
+                Grid.Row="1"
+                BorderThickness="2,0,2,2" Height="Auto" Margin="20,0,20,0"
+                Visibility="Collapsed">
+
+                <ListView x:Name="RecipeDescriptionListView" ItemsSource="{x:Bind ingredients, Mode=OneWay}" IsItemClickEnabled="False" HorizontalAlignment="Left" >
+                    <ListView.ItemTemplate>
+                        <DataTemplate x:Name="RecipeDescriptionDataTemplate" x:DataType="data:Ingredient" >
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto" />
+                                    <ColumnDefinition Width="Auto" />
+                                    <ColumnDefinition Width="Auto" />
+                                </Grid.ColumnDefinitions>
+                                
+                                <TextBlock Text="{x:Bind ingredientName, Mode=OneWay}" Grid.Column="0" Margin="0"/>
+                                <TextBlock Text="{x:Bind ingredientQuantity, Mode=OneWay}" Grid.Column="1" Margin="10,0,0,0"/>
+                                <TextBlock Text="{x:Bind ingredientMeasurementUnit, Mode=OneWay}" Grid.Column="2" Margin="5,0,0,0"/>
+                            </Grid>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+                
+            </Border>
+
+
+            <Border Name="ToolsTab"
+                BorderBrush="{StaticResource ApplicationForegroundThemeBrush}" 
+                Background="{StaticResource ApplicationPageBackgroundThemeBrush}"
+                Grid.Row="2"
+                BorderThickness="2,0,2,2" Height="Auto" Margin="20,0,20,0">
+
+                <Button Name="ToolsButton" Content="Tools" Margin="5" Background="Black" Width="200" HorizontalContentAlignment="Left" Click="ToolsButton_Click"/>
+            </Border>
+
+            <Border Name="ToolsDropDown"
+                BorderBrush="{StaticResource ApplicationForegroundThemeBrush}" 
+                Background="{StaticResource ApplicationPageBackgroundThemeBrush}"
+                Grid.Row="3"
+                BorderThickness="2,0,2,2" Height="Auto" Margin="20,0,20,0"
+                Visibility="Collapsed">
+
+                <TextBlock Text="Tools Info Goes Here" />
+            </Border>
+
+
+            <Border Name="TimeToCookTab"
+                BorderBrush="{StaticResource ApplicationForegroundThemeBrush}" 
+                Background="{StaticResource ApplicationPageBackgroundThemeBrush}"
+                Grid.Row="4"
+                BorderThickness="2,0,2,2" Height="Auto" Margin="20,0,20,0">
+
+                <Button Name="TimeToCookButton"  Content="Time To Cook" Margin="5" Background="Black" Width="200" HorizontalContentAlignment="Left" Click="TimeToCookButton_Click" />
+            </Border>
+
+            <Border Name="TimeToCookDropDown"
+                BorderBrush="{StaticResource ApplicationForegroundThemeBrush}" 
+                Background="{StaticResource ApplicationPageBackgroundThemeBrush}"
+                Grid.Row="5"
+                BorderThickness="2,0,2,2" Height="Auto" Margin="20,0,20,0"
+                Visibility="Collapsed">
+
+                <TextBlock Text="Time to Cook Info Goes Here" />
+            </Border>
+
+        </Grid>
+
+        <StackPanel Orientation="Horizontal" Grid.Row="4" VerticalAlignment="Bottom" HorizontalAlignment="Center">
+            <Button Content="Back To Recipes" Margin="0,0,50,25" Visibility="Collapsed"/>
+            <Button Content="Begin Recipes" Margin="0,0,0,25"/>
+        </StackPanel>
+        
+    </Grid>
+</Page>

@@ -1,3 +1,4 @@
+/*
 public class User
 {
     public int id { get; }
@@ -40,4 +41,4 @@ public class User
     {
         CurrentCourseStatus = newStatus;
     }
-}
+}*/
