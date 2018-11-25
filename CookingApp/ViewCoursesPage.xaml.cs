@@ -14,6 +14,7 @@ using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
 
 using CookingCurriculum.Classes;
+using CookingCurriculum.DataBase;
 using System.Collections.ObjectModel;
 // The Blank Page item template is documented at https://go.microsoft.com/fwlink/?LinkId=234238
 
@@ -34,24 +35,14 @@ namespace CookingCurriculum
 
             // allocate memory for courseDescriptions
             courseDescriptions = new ObservableCollection<CourseDescription>();
-           
+
             // Retrieve the courses data from the database
-            courseDescriptions = courses.GetCourseDescription((App.Current as App).ConnectionString); 
-            // for now, just do this manually so we can test the implementation
-            //generateTestCourseDescriptions();
+            var courseList = DBConnection.GetCourseDescriptions();
+            foreach(var item in courseList)
+            {
+                courseDescriptions.Add(item); // must add the item so the change registers with the system
+            }
         }
-
-
-        // this function populate the course descriptions
-        /* in the future, this will be done via calls to the database
-        private void generateTestCourseDescriptions()
-        {
-            courseDescriptions.Add(new CourseDescription("Italian", "Description of the Italian course."));
-            courseDescriptions.Add(new CourseDescription("Cajun", "Description of the Cajun course."));
-            courseDescriptions.Add(new CourseDescription("French", "Description of the French course."));
-            courseDescriptions.Add(new CourseDescription("Vegan", "Description of the Vegan course."));
-            courseDescriptions.Add(new CourseDescription("Mediterranean", "Description of the Mediterranean course."));
-        }*/
 
         private void CourseDescriptionListView_ItemClick(object sender, ItemClickEventArgs e)
         {
