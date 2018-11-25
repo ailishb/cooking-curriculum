@@ -23,7 +23,7 @@ namespace CookingCurriculum.DataBase
         // method to return all course descriptions
         public static List<CourseDescription> GetCourseDescriptions()
         {
-            const string query = "select name, description, author from course;";
+            const string query = "select name, description, author, courseID from course;";
 
             var courses = new List<CourseDescription>();
             try
@@ -39,7 +39,7 @@ namespace CookingCurriculum.DataBase
                             {
                                 while(reader.Read())
                                 {
-                                    courses.Add(new CourseDescription(reader.GetString(0), reader.GetString(1), reader.GetString(2)));
+                                    courses.Add(new CourseDescription(reader.GetString(0), reader.GetString(1), reader.GetString(2), reader.GetInt32(3)));
                                 }
                             }
                         }
@@ -53,5 +53,40 @@ namespace CookingCurriculum.DataBase
             }
             return null;
         }
+
+        // method to return all recipe descriptions in a specified course
+        public static List<RecipeDescription> GetRecipeDescriptions(int courseID)
+        {
+            const string query = "select recipeID, name, description, difficultylevel, author from recipe;";
+
+            var courses = new List<RecipeDescription>();
+            try
+            {
+                using (var connection = new MySqlConnection(connectionString))
+                {
+                    connection.Open();
+                    if (connection.State == System.Data.ConnectionState.Open)
+                    {
+                        using (MySqlCommand cmd = new MySqlCommand(query, connection))
+                        {
+                            using (MySqlDataReader reader = cmd.ExecuteReader())
+                            {
+                                while (reader.Read())
+                                {
+                                    courses.Add(new RecipeDescription(reader.GetInt32(0), reader.GetString(1), reader.GetString(2), reader.GetInt32(3), reader.GetString(4)));
+                                }
+                            }
+                        }
+                    }
+                }
+                return courses;
+            }
+            catch (Exception eSql)
+            {
+                Debug.WriteLine("Exception: " + eSql.Message);
+            }
+            return null;
+        }
+
     }
 }

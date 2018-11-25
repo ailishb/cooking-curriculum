@@ -27,10 +27,6 @@
 
         <ProgressBar Name="RecipeProgressBar" Value="1" Grid.Row="1" Grid.Column="1" HorizontalAlignment="Center" Width="250" Height="10" Margin="0,0,0,20"/>
 
-        <Button Name="LastRecipeInstructionButton" Grid.Row="2" Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Center" FontFamily="Segoe MDL2 Assets" Content="&#xE760;" Click="LastRecipeInstructionButton_Click"/>
-
-        <Button Name="NextRecipeInstructionButton" Grid.Row="2" Grid.Column="2" VerticalAlignment="Center" HorizontalAlignment="Center" FontFamily="Segoe MDL2 Assets" Content="&#xE761;" Click="NextRecipeInstructionButton_Click"/>
-
         <Border BorderBrush="{StaticResource ApplicationForegroundThemeBrush}" 
                 Background="{StaticResource ApplicationPageBackgroundThemeBrush}"
                 Grid.Row="2" Grid.Column="1"
@@ -47,11 +43,11 @@
                                 <RowDefinition Height="*" />
                             </Grid.RowDefinitions>
 
-                            <TextBlock Name="RecipeTitleTextBlock" Text="{x:Bind m_title, Mode=OneWay}" Grid.Row="0" HorizontalAlignment="Center" Margin="5" />
+                            <TextBlock Name="RecipeTitleTextBlock" Text="{x:Bind m_name, Mode=OneWay}" Grid.Row="0" HorizontalAlignment="Center" Margin="5" />
 
                             <Image Name="RecipeImage" Source="Assets/StoreLogo.png" Grid.Row="1" HorizontalAlignment="Center" MaxHeight="100" MaxWidth="100"/>
 
-                            <TextBlock Name="RecipeDescriptionTextBlock" Text="{x:Bind m_recipeDescription, Mode=OneWay}" Grid.Row="2" HorizontalAlignment="Center" TextWrapping="Wrap" Margin="5" />
+                            <TextBlock Name="RecipeDescriptionTextBlock" Text="{x:Bind m_description, Mode=OneWay}" Grid.Row="2" HorizontalAlignment="Center" TextWrapping="Wrap" Margin="5" />
 
                             <StackPanel Orientation="Horizontal" Grid.Row="3" VerticalAlignment="Bottom" HorizontalAlignment="Center">
                                 <Button Name="PreviewButton" Content="Preview" Margin="5" Click="PreviewButton_Click"/>

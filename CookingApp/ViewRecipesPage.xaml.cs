@@ -14,6 +14,7 @@ using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
 
 using CookingCurriculum.Classes;
+using CookingCurriculum.DataBase;
 using System.Collections.ObjectModel;
 
 namespace CookingCurriculum
@@ -35,6 +36,16 @@ namespace CookingCurriculum
 
             // allocate memory for the recipe
             // recipe = new Recipe();
+
+            //dummy course ID, need to pass in
+            var courseID = 1;
+
+            // Retrieve the recipe data from the database
+            var recipeList = DBConnection.GetRecipeDescriptions(courseID);
+            foreach (var item in recipeList)
+            {
+                recipeDescriptions.Add(item); // must add the item so the change registers with the system
+            }
         }
 
         protected override void OnNavigatedTo(NavigationEventArgs e)
@@ -42,18 +53,21 @@ namespace CookingCurriculum
             base.OnNavigatedTo(e);
 
             // get the course name that was passed as a parameter
+            // how to pass recipe ID instead?
             var courseName = (string)e.Parameter;
-
+            //var courseID = 1;
             // make a call to a database to populate the recipe contents
             // EDIT - for now just populate with test data
-            populateRecipeData();
+            // populateRecipeData(courseID);
 
             CourseName.Text = courseName;
         }
 
-        private void populateRecipeData()
+        //changed to just a list view instead of carosel for recipes
+        /*
+        private void populateRecipeData(int courseID)
         {
-            recipeDescriptions.Add(new RecipeDescription("Recipe 1", "", "Description for Recipe 1"));
+            recipeDescriptions.Add(new RecipeDescription(1, "Recipe 1", "Description for Recipe 1", 1, "Someone"));
             currentRecipe = 1;
         }
 
@@ -63,9 +77,9 @@ namespace CookingCurriculum
             {
                 --currentRecipe;
                 recipeDescriptions.Clear();
-                recipeDescriptions.Add(new RecipeDescription(String.Format("Recipe {0}", currentRecipe),
-                                                             "",
-                                                             String.Format("Description for Recipe {0}", currentRecipe)));
+                recipeDescriptions.Add(new RecipeDescription(1, String.Format("Recipe {0}", currentRecipe),
+                                                             String.Format("Description for Recipe {0}", currentRecipe),
+                                                             1, String.Format("Someone")));
             }
         }
 
@@ -75,11 +89,12 @@ namespace CookingCurriculum
             {
                 ++currentRecipe;
                 recipeDescriptions.Clear();
-                recipeDescriptions.Add(new RecipeDescription(String.Format("Recipe {0}", currentRecipe),
-                                                             "",
-                                                             String.Format("Description for Recipe {0}", currentRecipe)));
+                recipeDescriptions.Add(new RecipeDescription(1, String.Format("Recipe {0}", currentRecipe),
+                                                             String.Format("Description for Recipe {0}", currentRecipe),
+                                                             1, String.Format("Someone")));
             }
         }
+        */
 
         private void BackToCoursesButton_Click(object sender, RoutedEventArgs e)
         {
@@ -98,7 +113,7 @@ namespace CookingCurriculum
             string courseName = CourseName.Text;
 
             // get the recipe name in the course
-            string recipeName = recipeDescriptions[0].m_title;
+            string recipeName = recipeDescriptions[0].m_name;
 
             // create a List to send to the Activ Recipes page
             List<string> sendData = new List<string>();

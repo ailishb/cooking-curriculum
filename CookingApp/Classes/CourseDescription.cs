@@ -15,12 +15,14 @@ namespace CookingCurriculum.Classes
         public string m_title;
         public string m_description;
         public string m_author;
+        public int m_courseID;
 
-        public CourseDescription(string title = "", string description = "", string author = "")
+        public CourseDescription(string title = "", string description = "", string author = "", int courseID = 0)
         {
             m_title = title;
             m_description = description;
             m_author = author;
+            m_courseID = courseID;
         }
         
     }

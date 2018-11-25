@@ -8,15 +8,20 @@ namespace CookingCurriculum.Classes
 {
     public class RecipeDescription
     {
-        public string m_title;
-        public string m_image;
-        public string m_recipeDescription;
+        public int m_recipeID;
+        public string m_name;
+        public string m_description;
+        public int m_difficultyLevel;
+        public string m_author;
 
-        public RecipeDescription(string title, string image, string description)
+
+        public RecipeDescription(int recipeID, string name, string description, int difficultyLevel, string author)
         {
-            m_title = title;
-            m_image = image;
-            m_recipeDescription = description;
+            m_recipeID = recipeID;
+            m_name = name;
+            m_description = description;
+            m_difficultyLevel = difficultyLevel;
+            m_author = author;
         }
     }
 }
