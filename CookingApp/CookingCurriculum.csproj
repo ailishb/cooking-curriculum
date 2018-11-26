@@ -100,7 +100,6 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Classes\RecipeStep.cs" />
     <Compile Include="Classes\Course.cs" />
     <Compile Include="Classes\CourseDescription.cs" />
     <Compile Include="Classes\Ingredient.cs" />
@@ -109,6 +108,7 @@
     <Compile Include="Classes\OtherClasses\user.cs" />
     <Compile Include="Classes\Recipe.cs" />
     <Compile Include="Classes\RecipeDescription.cs" />
+    <Compile Include="Classes\RecipeSteps.cs" />
     <Compile Include="CurrentRecipesStepsPage.xaml.cs">
       <DependentUpon>CurrentRecipesStepsPage.xaml</DependentUpon>
     </Compile>
