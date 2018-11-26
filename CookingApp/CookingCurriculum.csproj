@@ -141,10 +141,13 @@
   <ItemGroup>
     <Content Include="DataBase\connection-info.txt" />
     <Content Include="DataBase\data_definition_queries.sql" />
+    <Content Include="Images\crackingegg.jpg" />
     <Content Include="Images\deviledeggs.jpeg" />
+    <Content Include="Images\eggsonplate.jpg" />
     <Content Include="Images\poachedeggs.jpg" />
     <Content Include="Images\scottisheggs.jpg" />
     <Content Include="Images\scrambledeggs.jpg" />
+    <Content Include="Images\turnonstove.jpg" />
     <Content Include="Properties\Default.rd.xml" />
     <Content Include="Assets\LockScreenLogo.scale-200.png" />
     <Content Include="Assets\SplashScreen.scale-200.png" />

@@ -18,7 +18,28 @@ namespace CookingCurriculum.Classes
                stepNumber = RecipeStepNumber;
                name = RecipeName;
                instructions = RecipeInstructions;
-               img_url = RecipeImg_URL;
+               // img_url = RecipeImg_URL;          <-- Temporary Fix, see below
+
+
+               // temporary Image Paths
+                switch(stepNumber)
+                {
+                    case 1:
+                        img_url = "Images/crackingegg.jpg";
+                        break;
+
+                    case 2:
+                        img_url = "Images/turnonstove.jpg";
+                        break;
+
+                    case 3:
+                        img_url = "Images/eggsonplate.jpg";
+                        break;
+
+                    default:
+                        img_url = "";
+                        break;
+                }
           }
      }
 }

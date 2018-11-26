@@ -27,35 +27,46 @@ namespace CookingCurriculum
     public sealed partial class CurrentRecipesStepsPage : Page
     {
         public ObservableCollection<Ingredient> ingredients;
-        public List<RecipeStep> recipeSteps;
+        public ObservableCollection<RecipeStep> recipeSteps;
         public string courseName;
         public string recipeName;
 
-          public CurrentRecipesStepsPage()
+        public CurrentRecipesStepsPage()
         {
             this.InitializeComponent();
+
+            recipeSteps = new ObservableCollection<RecipeStep>();
         }
 
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
-               base.OnNavigatedTo(e);
+            base.OnNavigatedTo(e);
 
-               // get out the course and recipe names
-               var data = e.Parameter as List<string>;
+            // get out the course and recipe names
+            var data = e.Parameter as List<string>;
 
-               courseName = data[0];
-               recipeName = data[1];
+            courseName = data[0];
+            recipeName = data[1];
 
-               //Get Recipe instructions and steps
-               int recipeID = DBConnection.GetRecipeIDFromName(recipeName);
-               recipeSteps = DBConnection.GetRecipeSteps(recipeID);
+            //Get Recipe instructions and steps
+            int recipeID = DBConnection.GetRecipeIDFromName(recipeName);
+            var steps = DBConnection.GetRecipeSteps(recipeID);
 
-               // set the recipe name on the page
-               RecipeName.Text = recipeName;
+            // the following code makes sure the steps are adding to the list in order so that they appear to the user in the correct order
+            int iii = 1;
+            while (iii <= steps.Count())
+            {
+                foreach (var item in steps)
+                {
+                    if (iii == item.stepNumber)
+                        recipeSteps.Add(item);
+                }
 
-               // Create a new flip view and add contents
-               FlipView CurrentStep = new FlipView();
+                ++iii;
+            }
 
+            // set the recipe name on the page
+            RecipeName.Text = recipeName;
           }
 
         private void BackToActiveRecipesButton_Click(object sender, RoutedEventArgs e)
