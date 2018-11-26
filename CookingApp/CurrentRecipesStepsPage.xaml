@@ -25,7 +25,7 @@
 
         <ProgressBar Name="RecipeProgressBar" Value="1" Grid.Row="2" HorizontalAlignment="Center" Width="250" Height="10" Margin="0,0,0,20"/>
 
-        <FlipView Name="CurrentStep" Grid.Row="3" ItemsSource="{x:Bind recipeSteps, Mode=OneWay}" HorizontalAlignment="Stretch" VerticalAlignment="Bottom" MaxHeight="500">
+        <FlipView Name="CurrentStep" Grid.Row="3" ItemsSource="{x:Bind recipeSteps, Mode=OneWay}" HorizontalAlignment="Stretch" VerticalAlignment="Bottom" MaxHeight="500" SelectionChanged="CurrentStep_SelectionChanged">
             <FlipView.ItemTemplate>
                 <DataTemplate x:Name="RecipeStepDataTemplate" x:DataType="data:RecipeStep">
                     <Grid>

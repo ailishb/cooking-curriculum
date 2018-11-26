@@ -87,5 +87,20 @@ namespace CookingCurriculum
                // Add to finished recipe
                // Prompt for rating
         }
-     }
+
+        private void CurrentStep_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (((FlipView)sender).SelectedItem != null)
+            {
+                int totalSteps = recipeSteps.Count();
+                int currentStep = (((FlipView)sender).SelectedItem as RecipeStep).stepNumber;
+
+                RecipeProgressBar.Value = (currentStep * 100) / totalSteps;
+            }
+            else
+            {
+                RecipeProgressBar.Value = 0;
+            }
+        }
+    }
 }
