@@ -88,5 +88,70 @@ namespace CookingCurriculum.DataBase
             return null;
         }
 
+          public static List<RecipeStep> GetRecipeSteps(int recipeID)
+          {
+               string query = String.Format("select stepOrder, name, instructions, img_url  from recipeSteps where recipeID = {0};", recipeID);
+
+               var recipeSteps = new List<RecipeStep>();
+               try
+               {
+                    // send query
+                    using (var connection = new MySqlConnection(connectionString))
+                    {
+                         connection.Open();
+                         if (connection.State == System.Data.ConnectionState.Open)
+                         {
+                              using (MySqlCommand cmd = new MySqlCommand(query, connection))
+                              {
+                                   using (MySqlDataReader reader = cmd.ExecuteReader())
+                                   {
+                                        while (reader.Read())
+                                        {
+                                             recipeSteps.Add(new RecipeStep(reader.GetInt32(0), reader.GetString(1), reader.GetString(2), reader.GetString(3)));
+                                        }
+                                   }
+                              }
+                         }
+                    }
+                    return recipeSteps;
+               }
+               catch (Exception eSql)
+               {
+                    Debug.WriteLine("Exception: " + eSql.Message);
+               }
+               return null;
+          }
+
+          public static int GetRecipeIDFromName(string recipeName)
+          {
+               string query = String.Format("select recipeID from recipe where name = \"{0}\";", recipeName);
+               try
+               {
+                    // send query
+                    using (var connection = new MySqlConnection(connectionString))
+                    {
+                         connection.Open();
+                         if (connection.State == System.Data.ConnectionState.Open)
+                         {
+                              using (MySqlCommand cmd = new MySqlCommand(query, connection))
+                              {
+                                   using (MySqlDataReader reader = cmd.ExecuteReader())
+                                   {
+                                        while (reader.Read())
+                                        {
+                                             return reader.GetInt32(0);
+                                        }
+                                   }
+                              }
+                         }
+                    }
+               }
+               catch (Exception eSql)
+               {
+                    Debug.WriteLine("Exception: " + eSql.Message);
+               }
+               return -1;
+          }
+
     }
 }

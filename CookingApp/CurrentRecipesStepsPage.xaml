@@ -20,11 +20,15 @@
           <TextBlock Text="Recipe:" Grid.Row="0" HorizontalAlignment="Center" FontSize="32" />
           <TextBlock Name="RecipeName" Grid.Row="1" HorizontalAlignment="Center" FontSize="32" FontWeight="Bold" Margin="0,5,0,25" />
 
-          <FlipView x:Name="RecipeImages" HorizontalAlignment="Center" Margin="0,65,0,0" Grid.Row="4" VerticalAlignment="Top" Width="1734" Height="767"/>
-          
           <Button Name="BackToActiveRecipesButton" Content="Back" Grid.Row="0" Grid.ColumnSpan="2" FontSize="12" Padding="5" Margin="15" Click="BackToActiveRecipesButton_Click"/>
-
-          <StackPanel Orientation="Horizontal" Grid.Row="4" VerticalAlignment="Bottom" HorizontalAlignment="Center">
+          
+          <StackPanel Orientation="Horizontal" Grid.Row="2" VerticalAlignment="Center" HorizontalAlignment="Stretch">
+               <FlipView Name="CurrentStep" HorizontalAlignment="Stretch" VerticalAlignment="Bottom">
+                 
+               </FlipView>
+          </StackPanel>
+          
+          <StackPanel Orientation="Horizontal" Grid.Row="3" VerticalAlignment="Bottom" HorizontalAlignment="Center">
                <Button Content="Finish" Margin="0,0,0,25" Click="FinishRecipesButton_Click"/>
           </StackPanel>
      </Grid>

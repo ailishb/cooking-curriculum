@@ -27,15 +27,13 @@ namespace CookingCurriculum
     public sealed partial class CurrentRecipesStepsPage : Page
     {
         public ObservableCollection<Ingredient> ingredients;
-        public Recipe recipe;
+        public List<RecipeStep> recipeSteps;
         public string courseName;
         public string recipeName;
 
           public CurrentRecipesStepsPage()
         {
             this.InitializeComponent();
-
-            //Get Recipe instructions and steps
         }
 
         protected override void OnNavigatedTo(NavigationEventArgs e)
@@ -48,8 +46,16 @@ namespace CookingCurriculum
                courseName = data[0];
                recipeName = data[1];
 
+               //Get Recipe instructions and steps
+               int recipeID = DBConnection.GetRecipeIDFromName(recipeName);
+               recipeSteps = DBConnection.GetRecipeSteps(recipeID);
+
                // set the recipe name on the page
                RecipeName.Text = recipeName;
+
+               // Create a new flip view and add contents
+               FlipView CurrentStep = new FlipView();
+
           }
 
         private void BackToActiveRecipesButton_Click(object sender, RoutedEventArgs e)
@@ -67,7 +73,8 @@ namespace CookingCurriculum
 
         private void FinishRecipesButton_Click(object sender, RoutedEventArgs e)
         {
-
+               // Add to finished recipe
+               // Prompt for rating
         }
      }
 }
