@@ -37,6 +37,8 @@
                 <RowDefinition Height="Auto" />
                 <RowDefinition Height="Auto" />
                 <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
             </Grid.RowDefinitions>
 
             <Border Name="IngredientsTab"
@@ -119,10 +121,10 @@
                 BorderBrush="{StaticResource ApplicationForegroundThemeBrush}" 
                 Background="{StaticResource ApplicationPageBackgroundThemeBrush}"
                 Grid.Row="6"
-                BorderThickness="2" Height="Auto" Margin="20,0,20,0">
+                BorderThickness="2,0,2,2" Height="Auto" Margin="20,0,20,0">
 
                 <Button Name="InstructionsButton" Content="Instructions" Margin="0" Padding="5" Background="Black" Width="{Binding ActualWidth, ElementName=InstructionsTab}" HorizontalContentAlignment="Left" Click="InstructionsButton_Click"/>
-             </Border>
+            </Border>
 
             <Border Name="InstructionsDropDown"
                 BorderBrush="{StaticResource ApplicationForegroundThemeBrush}" 
@@ -131,26 +133,25 @@
                 BorderThickness="2,0,2,2" Height="Auto" Margin="20,0,20,0"
                 Visibility="Collapsed">
 
-                    <ListView x:Name="InstructionListView" ItemsSource="{x:Bind instructions, Mode=OneWay}" IsItemClickEnabled="False" HorizontalAlignment="Left" >
-                         <ListView.ItemTemplate>
-                              <DataTemplate x:Name="RecipeInstructionDataTemplate" x:DataType="data:RecipeStep" >
-                                   <Grid>
-                                        <Grid.ColumnDefinitions>
-                                             <ColumnDefinition Width="Auto" />
-                                             <ColumnDefinition Width="Auto" />
-                                             <ColumnDefinition Width="Auto" />
-                                        </Grid.ColumnDefinitions>
+                <ListView x:Name="InstructionListView" ItemsSource="{x:Bind instructions, Mode=OneWay}" IsItemClickEnabled="False" HorizontalAlignment="Left" >
+                    <ListView.ItemTemplate>
+                        <DataTemplate x:Name="RecipeInstructionDataTemplate" x:DataType="data:RecipeStep" >
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto" />
+                                    <ColumnDefinition Width="Auto" />
+                                    <ColumnDefinition Width="Auto" />
+                                </Grid.ColumnDefinitions>
 
-                                        <TextBlock Text="{x:Bind stepNumber, Mode=OneWay}" Grid.Column="0" Margin="0"/>
-                                        <TextBlock Text="{x:Bind instructions, Mode=OneWay}" Grid.Column="1" Margin="10,0,0,0"/>
-                                   </Grid>
-                              </DataTemplate>
-                         </ListView.ItemTemplate>
-                    </ListView>
-
+                                <TextBlock Text="{x:Bind stepNumber, Mode=OneWay}" Grid.Column="0" Margin="0"/>
+                                <TextBlock Text="{x:Bind instructions, Mode=OneWay}" Grid.Column="1" Margin="10,0,0,0"/>
+                            </Grid>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
             </Border>
 
-          </Grid>
+        </Grid>
 
         <StackPanel Orientation="Horizontal" Grid.Row="4" VerticalAlignment="Bottom" HorizontalAlignment="Center">
             <Button Content="Back To Recipes" Margin="0,0,50,25" Visibility="Collapsed"/>
