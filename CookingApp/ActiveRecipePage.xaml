@@ -45,7 +45,7 @@
                 Grid.Row="0"
                 BorderThickness="2" Height="Auto" Margin="20,0,20,0">
 
-                <Button Name="IngredientsButton" Content="Ingredients" Margin="5" Background="Black" Width="200" HorizontalContentAlignment="Left" Click="IngredientsButton_Click"/>
+                <Button Name="IngredientsButton" Content="Ingredients" Margin="0" Padding="5" Background="Black" Width="{Binding ActualWidth, ElementName=IngredientsTab}" HorizontalContentAlignment="Left" Click="IngredientsButton_Click"/>
             </Border>
 
             <Border Name="IngredientsDropDown"
@@ -82,7 +82,7 @@
                 Grid.Row="2"
                 BorderThickness="2,0,2,2" Height="Auto" Margin="20,0,20,0">
 
-                <Button Name="ToolsButton" Content="Tools" Margin="5" Background="Black" Width="200" HorizontalContentAlignment="Left" Click="ToolsButton_Click"/>
+                <Button Name="ToolsButton" Content="Tools" Margin="0" Padding="5" Background="Black" Width="{Binding ActualWidth, ElementName=ToolsTab}" HorizontalContentAlignment="Left" Click="ToolsButton_Click"/>
             </Border>
 
             <Border Name="ToolsDropDown"
@@ -102,7 +102,7 @@
                 Grid.Row="4"
                 BorderThickness="2,0,2,2" Height="Auto" Margin="20,0,20,0">
 
-                <Button Name="TimeToCookButton"  Content="Time To Cook" Margin="5" Background="Black" Width="200" HorizontalContentAlignment="Left" Click="TimeToCookButton_Click" />
+                <Button Name="TimeToCookButton"  Content="Time To Cook" Margin="0" Padding="5" Background="Black" Width="{Binding ActualWidth, ElementName=TimeToCookTab}" HorizontalContentAlignment="Left" Click="TimeToCookButton_Click" />
             </Border>
 
             <Border Name="TimeToCookDropDown"
@@ -119,7 +119,7 @@
 
         <StackPanel Orientation="Horizontal" Grid.Row="4" VerticalAlignment="Bottom" HorizontalAlignment="Center">
             <Button Content="Back To Recipes" Margin="0,0,50,25" Visibility="Collapsed"/>
-            <Button Content="Begin Recipes" Margin="0,0,0,25" Click="BeginRecipesButton_Click"/>
+            <Button Content="Begin Recipe" Margin="0,0,0,25" Click="BeginRecipesButton_Click"/>
         </StackPanel>
         
     </Grid>

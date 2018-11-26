@@ -14,6 +14,9 @@ namespace CookingCurriculum.Classes
         public int m_difficultyLevel;
         public string m_author;
 
+        // temporary image path
+        public string m_imagePath;
+
 
         public RecipeDescription(int recipeID, string name, string description, int difficultyLevel, string author)
         {
@@ -22,6 +25,30 @@ namespace CookingCurriculum.Classes
             m_description = description;
             m_difficultyLevel = difficultyLevel;
             m_author = author;
+
+            // assign appropriate image path
+            switch(m_name.ToLower())
+            {
+                case "deviled eggs":
+                    m_imagePath = "Images/deviledeggs.jpeg";
+                    break;
+
+                case "poached eggs":
+                    m_imagePath = "Images/poachedeggs.jpg";
+                    break;
+
+                case "scottish eggs":
+                    m_imagePath = "Images/scottisheggs.jpg";
+                    break;
+
+                case "scrambled eggs":
+                    m_imagePath = "Images/scrambledeggs.jpg";
+                    break;
+
+                default:
+                    m_imagePath = "Images/scrambledeggs.jpg";
+                    break;
+            }
         }
     }
 }

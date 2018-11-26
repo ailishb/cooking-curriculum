@@ -32,7 +32,6 @@ namespace CookingCurriculum
             this.InitializeComponent();
 
             ingredients = new ObservableCollection<Ingredient>();
-            
         }
 
         protected override void OnNavigatedTo(NavigationEventArgs e)

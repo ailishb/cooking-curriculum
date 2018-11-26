@@ -45,7 +45,7 @@
 
                             <TextBlock Name="RecipeTitleTextBlock" Text="{x:Bind m_name, Mode=OneWay}" Grid.Row="0" HorizontalAlignment="Center" Margin="5" />
 
-                            <Image Name="RecipeImage" Source="Assets/StoreLogo.png" Grid.Row="1" HorizontalAlignment="Center" MaxHeight="100" MaxWidth="100"/>
+                            <Image Name="RecipeImage" Source="{x:Bind m_imagePath, Mode=OneWay}" Grid.Row="1" HorizontalAlignment="Center" MaxHeight="200" MaxWidth="200"/>
 
                             <TextBlock Name="RecipeDescriptionTextBlock" Text="{x:Bind m_description, Mode=OneWay}" Grid.Row="2" HorizontalAlignment="Center" TextWrapping="Wrap" Margin="5" />
 

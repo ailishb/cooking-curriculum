@@ -115,7 +115,7 @@ namespace CookingCurriculum
             // get the recipe name in the course
             string recipeName = recipeDescriptions[0].m_name;
 
-            // create a List to send to the Activ Recipes page
+            // create a List to send to the Active Recipes page
             List<string> sendData = new List<string>();
 
             sendData.Add(courseName);
