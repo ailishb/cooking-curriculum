@@ -56,6 +56,8 @@ namespace CookingCurriculum
 
         private void getRecipeData(string courseName, string recipeName)
         {
+
+
             // This should makes calls to the DB - for now, just generate random data
             int recipeID = DBConnection.GetRecipeIDFromName(recipeName);
             List<Ingredient> ingredientsListBuffer = DBConnection.GetIngredientsByRecipeID(recipeID);

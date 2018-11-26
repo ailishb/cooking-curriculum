@@ -25,7 +25,7 @@
 
         <TextBlock Name="CourseName" Grid.Row="0" Grid.Column="1" HorizontalAlignment="Center" FontSize="28" Margin="0,30,0,10"/>
 
-        <ProgressBar Name="RecipeProgressBar" Value="1" Grid.Row="1" Grid.Column="1" HorizontalAlignment="Center" Width="250" Height="10" Margin="0,0,0,20"/>
+        <ProgressBar Name="CourseProgressBar" Value="1" Grid.Row="1" Grid.Column="1" HorizontalAlignment="Center" Width="250" Height="10" Margin="0,0,0,20"/>
 
         <Border BorderBrush="{StaticResource ApplicationForegroundThemeBrush}" 
                 Background="{StaticResource ApplicationPageBackgroundThemeBrush}"

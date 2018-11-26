@@ -5,31 +5,47 @@
     xmlns:local="using:CookingCurriculum"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:data="using:CookingCurriculum.Classes"
     mc:Ignorable="d"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
-     <Grid>
-          <Grid.RowDefinitions>
-               <RowDefinition Height="Auto" />
-               <RowDefinition Height="Auto" />
-               <RowDefinition Height="Auto" />
-               <RowDefinition Height="Auto" />
-               <RowDefinition Height="*" />
-          </Grid.RowDefinitions>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
 
-          <TextBlock Text="Recipe:" Grid.Row="0" HorizontalAlignment="Center" FontSize="32" />
-          <TextBlock Name="RecipeName" Grid.Row="1" HorizontalAlignment="Center" FontSize="32" FontWeight="Bold" Margin="0,5,0,25" />
+        <TextBlock Text="Recipe:" Grid.Row="0" HorizontalAlignment="Center" FontSize="32" />
+        <TextBlock Name="RecipeName" Grid.Row="1" HorizontalAlignment="Center" FontSize="32" FontWeight="Bold" Margin="0,5,0,25" />
 
-          <Button Name="BackToActiveRecipesButton" Content="Back" Grid.Row="0" Grid.ColumnSpan="2" FontSize="12" Padding="5" Margin="15" Click="BackToActiveRecipesButton_Click"/>
+        <Button Name="BackToActiveRecipesButton" Content="Back" Grid.Row="0" FontSize="12" Padding="5" Margin="15" Click="BackToActiveRecipesButton_Click"/>
+
+        <ProgressBar Name="RecipeProgressBar" Value="1" Grid.Row="2" HorizontalAlignment="Center" Width="250" Height="10" Margin="0,0,0,20"/>
+
+        <FlipView Name="CurrentStep" Grid.Row="3" ItemsSource="{x:Bind recipeSteps, Mode=OneWay}" HorizontalAlignment="Stretch" VerticalAlignment="Bottom" MaxHeight="500">
+            <FlipView.ItemTemplate>
+                <DataTemplate x:Name="RecipeStepDataTemplate" x:DataType="data:RecipeStep">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                        </Grid.RowDefinitions>
+                        
+                        <TextBlock Grid.Row="0" Text="{x:Bind name, Mode=OneWay}" FontSize="24" Margin="0,10,0,20" HorizontalAlignment="Center"/>
+                        <Image Grid.Row="1" Source="{x:Bind img_url, Mode=OneWay}" MaxHeight="500" MaxWidth="500"/>
+                        <TextBlock Grid.Row="2" Text="{x:Bind instructions, Mode=OneWay}" FontSize="18" Margin="0,20,0,0" HorizontalAlignment="Center"/>
+                    </Grid>
+                </DataTemplate>
+            </FlipView.ItemTemplate>
+         </FlipView>
+         
           
-          <StackPanel Orientation="Horizontal" Grid.Row="2" VerticalAlignment="Center" HorizontalAlignment="Stretch">
-               <FlipView Name="CurrentStep" HorizontalAlignment="Stretch" VerticalAlignment="Bottom">
-                 
-               </FlipView>
-          </StackPanel>
-          
-          <StackPanel Orientation="Horizontal" Grid.Row="3" VerticalAlignment="Bottom" HorizontalAlignment="Center">
-               <Button Content="Finish" Margin="0,0,0,25" Click="FinishRecipesButton_Click"/>
-          </StackPanel>
-     </Grid>
+        <StackPanel Orientation="Horizontal" Grid.Row="4" VerticalAlignment="Bottom" HorizontalAlignment="Center">
+            <Button Content="Finish" Margin="0,0,0,25" Click="FinishRecipesButton_Click"/>
+        </StackPanel>
+    </Grid>
 </Page>
