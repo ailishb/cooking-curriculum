@@ -140,6 +140,10 @@
   <ItemGroup>
     <Content Include="DataBase\connection-info.txt" />
     <Content Include="DataBase\data_definition_queries.sql" />
+    <Content Include="Images\deviledeggs.jpeg" />
+    <Content Include="Images\poachedeggs.jpg" />
+    <Content Include="Images\scottisheggs.jpg" />
+    <Content Include="Images\scrambledeggs.jpg" />
     <Content Include="Properties\Default.rd.xml" />
     <Content Include="Assets\LockScreenLogo.scale-200.png" />
     <Content Include="Assets\SplashScreen.scale-200.png" />
@@ -192,6 +196,7 @@
       <Version>0.47.1</Version>
     </PackageReference>
   </ItemGroup>
+  <ItemGroup />
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '14.0' ">
     <VisualStudioVersion>14.0</VisualStudioVersion>
   </PropertyGroup>
