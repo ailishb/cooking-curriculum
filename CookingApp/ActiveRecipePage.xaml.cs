@@ -24,6 +24,7 @@ namespace CookingCurriculum
     {
         // hold data for the grid view
         public ObservableCollection<Ingredient> ingredients;
+        public ObservableCollection<RecipeStep> instructions;
         public Recipe recipe;
         public string courseName;
         public string recipeName;
@@ -33,6 +34,7 @@ namespace CookingCurriculum
             this.InitializeComponent();
 
             ingredients = new ObservableCollection<Ingredient>();
+            instructions = new ObservableCollection<RecipeStep>();
         }
 
         protected override void OnNavigatedTo(NavigationEventArgs e)
@@ -63,19 +65,25 @@ namespace CookingCurriculum
                  ingredientsList.Add(item);
             }
 
-            List<string> instructionsList = new List<string>();
-            instructionsList.Add("This is the first instruction. ");
-            instructionsList.Add("This is the second instruction. ");
-            instructionsList.Add("This is the third instruction. ");
-            instructionsList.Add("This is the fourth instruction. ");
-            instructionsList.Add("This is the fifth instruction. ");
+            List<RecipeStep> instructionsListBuffer = DBConnection.GetRecipeSteps(recipeID);
+            List<RecipeStep> instructionsList = new List<RecipeStep>();
+            foreach (var item in instructionsListBuffer)
+            {
+                 instructionsList.Add(item);
+            }
 
             recipe = new Recipe(recipeName, ingredientsList, instructionsList);
 
             // add the list of ingredients to the observable collection
             foreach(var item in recipe.recipeIngredients)
             {
-                ingredients.Add(item);
+                 ingredients.Add(item);
+            }
+
+            // add the list of instructions to the observation collection
+            foreach (var item in recipe.recipeInstructions)
+            {
+                 instructions.Add(item);
             }
 
             ExperienceLevelTextBlock.Text = " Beginner";
@@ -90,6 +98,7 @@ namespace CookingCurriculum
                 IngredientsDropDown.Visibility = Visibility.Visible;
                 ToolsDropDown.Visibility = Visibility.Collapsed;
                 TimeToCookDropDown.Visibility = Visibility.Collapsed;
+                InstructionsDropDown.Visibility = Visibility.Collapsed;
             }
         }
 
@@ -102,6 +111,7 @@ namespace CookingCurriculum
                 IngredientsDropDown.Visibility = Visibility.Collapsed;
                 ToolsDropDown.Visibility = Visibility.Visible;
                 TimeToCookDropDown.Visibility = Visibility.Collapsed;
+                InstructionsDropDown.Visibility = Visibility.Collapsed;
             }
         }
 
@@ -114,10 +124,24 @@ namespace CookingCurriculum
                 IngredientsDropDown.Visibility = Visibility.Collapsed;
                 ToolsDropDown.Visibility = Visibility.Collapsed;
                 TimeToCookDropDown.Visibility = Visibility.Visible;
+                InstructionsDropDown.Visibility = Visibility.Collapsed;
             }
         }
 
-        private void BackToRecipesButton_Click(object sender, RoutedEventArgs e)
+        private void InstructionsButton_Click(object sender, RoutedEventArgs e)
+        {
+            if (InstructionsDropDown.Visibility == Visibility.Visible)
+                InstructionsDropDown.Visibility = Visibility.Collapsed;
+            else
+            {
+                 IngredientsDropDown.Visibility = Visibility.Collapsed;
+                 ToolsDropDown.Visibility = Visibility.Collapsed;
+                 TimeToCookDropDown.Visibility = Visibility.Collapsed;
+                 InstructionsDropDown.Visibility = Visibility.Visible;
+            }
+        }
+
+          private void BackToRecipesButton_Click(object sender, RoutedEventArgs e)
         {
             // navigate to the View Recipes page passing it the name of the course
             Frame rootFrame = Window.Current.Content as Frame;

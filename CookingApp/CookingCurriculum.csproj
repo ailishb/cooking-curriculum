@@ -100,7 +100,7 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Classes\RecipeSteps.cs" />
+    <Compile Include="Classes\RecipeStep.cs" />
     <Compile Include="Classes\Course.cs" />
     <Compile Include="Classes\CourseDescription.cs" />
     <Compile Include="Classes\Ingredient.cs" />

@@ -12,13 +12,13 @@ namespace CookingCurriculum.Classes
     {
         public string           recipeName;
         public List<Ingredient> recipeIngredients;
-        public List<string>   recipeInstructions;
+        public List<RecipeStep>   recipeInstructions;
 
         public Recipe()
         {
         }
 
-        public Recipe(string name, List<Ingredient> ingredients, List<string> instructions)
+        public Recipe(string name, List<Ingredient> ingredients, List<RecipeStep> instructions)
         {
             recipeName = name;
             recipeIngredients = ingredients;
