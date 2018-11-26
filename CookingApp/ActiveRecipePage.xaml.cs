@@ -1,4 +1,5 @@
 ﻿using CookingCurriculum.Classes;
+using CookingCurriculum.DataBase;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -54,15 +55,13 @@ namespace CookingCurriculum
         private void getRecipeData(string courseName, string recipeName)
         {
             // This should makes calls to the DB - for now, just generate random data
-
+            int recipeID = DBConnection.GetRecipeIDFromName(recipeName);
+            List<Ingredient> ingredientsListBuffer = DBConnection.GetIngredientsByRecipeID(recipeID);
             List<Ingredient> ingredientsList = new List<Ingredient>();
-            ingredientsList.Add(new Ingredient("Ingredient 1", 1, "lbs"));
-            ingredientsList.Add(new Ingredient("Ingredient 2", 2, "cups"));
-            ingredientsList.Add(new Ingredient("Ingredient 3", 3, "teaspoons"));
-            ingredientsList.Add(new Ingredient("Ingredient 4", 4, "tablespoons"));
-            ingredientsList.Add(new Ingredient("Ingredient 5", 5, "oz"));
-            ingredientsList.Add(new Ingredient("Ingredient 6", 6, "kg"));
-            ingredientsList.Add(new Ingredient("Ingredient 7", 7, "pints"));
+            foreach (var item in ingredientsListBuffer)
+            {
+                 ingredientsList.Add(item);
+            }
 
             List<string> instructionsList = new List<string>();
             instructionsList.Add("This is the first instruction. ");

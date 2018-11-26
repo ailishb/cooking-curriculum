@@ -88,6 +88,40 @@ namespace CookingCurriculum.DataBase
             return null;
         }
 
+          public static List<Ingredient> GetIngredientsByRecipeID(int recipeID)
+          {
+               string query = String.Format("select description, amount, unit from recipeIngredients where recipeID = {0};", recipeID);
+               var res = new List<Ingredient>();
+               try
+               {
+                    // send query
+                    using (var connection = new MySqlConnection(connectionString))
+                    {
+                         connection.Open();
+                         if (connection.State == System.Data.ConnectionState.Open)
+                         {
+                              using (MySqlCommand cmd = new MySqlCommand(query, connection))
+                              {
+                                   using (MySqlDataReader reader = cmd.ExecuteReader())
+                                   {
+                                        while (reader.Read())
+                                        {
+                                             res.Add(new Ingredient(reader.GetString(0), (double)reader.GetInt32(1), reader.GetString(2)));
+                                        }
+                                   }
+                              }
+                         }
+                    }
+                    return res;
+               }
+               catch (Exception eSql)
+               {
+                    Debug.WriteLine("Exception: " + eSql.Message);
+               }
+               return null;
+          }
+
+          // Returns a List of type Recipe Steps
           public static List<RecipeStep> GetRecipeSteps(int recipeID)
           {
                string query = String.Format("select stepOrder, name, instructions, img_url  from recipeSteps where recipeID = {0};", recipeID);
