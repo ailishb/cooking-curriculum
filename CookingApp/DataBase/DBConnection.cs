@@ -221,7 +221,7 @@ namespace CookingCurriculum.DataBase
             }
             else
             {
-                Debug.WriteLine("Error: bad data returned for " + uName, " or ", cName);
+                Debug.WriteLine("Error: bad data returned from users or course call");
                 return -1;
             }
         }
@@ -258,7 +258,7 @@ namespace CookingCurriculum.DataBase
         }
         private static int GetCourseIDFromName(string userName)
         {
-            string query = String.Format("select userID from users where name = \"{0}\";", userName);
+            string query = String.Format("select userID from users where username = \"{0}\";", userName);
             try
             {
                 // send query
