@@ -258,7 +258,7 @@ namespace CookingCurriculum.DataBase
         }
         private static int GetCourseIDFromName(string userName)
         {
-            string query = String.Format("select userID from user where name = \"{0}\";", userName);
+            string query = String.Format("select userID from users where name = \"{0}\";", userName);
             try
             {
                 // send query
