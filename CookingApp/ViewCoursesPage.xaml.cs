@@ -80,7 +80,7 @@ namespace CookingCurriculum
 
             if (courseName != null)
             {
-                // add the course to database (the call to the database should then directly update the Users started courses)
+                int status = DBConnection.EnrollUserInCourse(User.name, courseName);
                 User.startedCoursesTitles.Add(courseName); // this needs to be changed to be a call to a database
 
                 // navigate to the View Recipes page passing it the name of the course

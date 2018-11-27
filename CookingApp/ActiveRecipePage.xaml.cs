@@ -51,10 +51,10 @@ namespace CookingCurriculum
             RecipeName.Text = recipeName;
 
             // get all recipe data
-            getRecipeData(courseName, recipeName);
+            GetRecipeData(courseName, recipeName);
         }
 
-        private void getRecipeData(string courseName, string recipeName)
+        private void GetRecipeData(string courseName, string recipeName)
         {
 
 
