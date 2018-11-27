@@ -80,10 +80,10 @@ namespace CookingCurriculum
 
             if (courseName != null)
             {
-                int status = DBConnection.EnrollUserInCourse(User.name, courseName);
-                User.startedCoursesTitles.Add(courseName); // this needs to be changed to be a call to a database
-
-                // navigate to the View Recipes page passing it the name of the course
+                //enroll user in selected course(update DB)
+                DBConnection.EnrollUserInCourse(User.name, courseName);
+                
+               // navigate to the View Recipes page passing it the name of the course
                 Frame rootFrame = Window.Current.Content as Frame;
                 rootFrame.Navigate(typeof(ViewRecipesPage), courseName);
             }
