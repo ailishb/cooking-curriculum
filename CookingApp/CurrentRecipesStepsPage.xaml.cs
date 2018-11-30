@@ -85,7 +85,11 @@ namespace CookingCurriculum
         private void FinishRecipesButton_Click(object sender, RoutedEventArgs e)
         {
                // Add to finished recipe
-               // Prompt for rating
+               DBConnection.AddCompletedRecipe(recipeName, User.userID);
+
+               //Go back to main menu
+               Frame rootFrame = Window.Current.Content as Frame;
+               rootFrame.Navigate(typeof(MainPage));
         }
 
         private void CurrentStep_SelectionChanged(object sender, SelectionChangedEventArgs e)

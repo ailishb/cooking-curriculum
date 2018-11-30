@@ -256,7 +256,8 @@ namespace CookingCurriculum.DataBase
             }
             return -1;
         }
-        private static int GetUserIDFromName(string userName)
+
+        public static int GetUserIDFromName(string userName)
         {
             string query = String.Format("select userID from users where username = \"{0}\";", userName);
             try
@@ -286,7 +287,36 @@ namespace CookingCurriculum.DataBase
             }
             return -1;
         }
-        //query will eventually be expanded for use in account creation
+
+        public static void AddCompletedRecipe(string recipe, int userID)
+        {
+            string query = String.Format("insert into recipeCompletion (recipeID, userID, dateStatus, recipeStatus) values ({0}, {1}, NOW(), \"Completed\");", GetRecipeIDFromName(recipe), userID);
+            try
+            {
+                 using (var connection = new MySqlConnection(connectionString))
+                 {
+                      connection.Open();
+                      if (connection.State == System.Data.ConnectionState.Open)
+                      {
+                           using (MySqlCommand cmd = new MySqlCommand(query, connection))
+                           {
+                                using (MySqlDataReader reader = cmd.ExecuteReader())
+                                {
+                                     while (reader.Read())
+                                     {
+                                     }
+                                }
+                           }
+                      }
+                 }
+            }
+            catch (Exception eSql)
+            {
+                 Debug.WriteLine("Exception: " + eSql.Message);
+            }
+        }
+
+        // Adds a new username to the table username and returns the new userID
         public static int AddUser(string name)
         {
             string query = String.Format("INSERT INTO users VALUES (0, \'{0}\', \'Active\');", name);
@@ -300,7 +330,18 @@ namespace CookingCurriculum.DataBase
                     {
                         using (MySqlCommand cmd = new MySqlCommand(query, connection))
                         {
-                            return cmd.ExecuteNonQuery();                          
+                            cmd.ExecuteNonQuery();                          
+                        }
+                        string query2 = "select LAST_INSERT_ID();";
+                        using (MySqlCommand cmd = new MySqlCommand(query2, connection))
+                        {
+                             using (MySqlDataReader reader = cmd.ExecuteReader())
+                             {
+                                  while (reader.Read())
+                                  {
+                                       return reader.GetInt32(0);
+                                  }
+                             }
                         }
                     }             
                 }
@@ -310,6 +351,44 @@ namespace CookingCurriculum.DataBase
                 Debug.WriteLine("Exception: " + eSql.Message);
             }
             return -1;
+        }
+
+        public static bool doesUsernameExist(string username)
+        {
+             int result = 0;
+            try
+            {
+                 using (var connection = new MySqlConnection(connectionString))
+                 {
+                      connection.Open();
+                      if (connection.State == System.Data.ConnectionState.Open)
+                      {
+                           string query = String.Format("SELECT EXISTS(SELECT 1 FROM users WHERE username = '{0}');", username);
+                           using (MySqlCommand cmd = new MySqlCommand(query, connection))
+                           {
+                                using (MySqlDataReader reader = cmd.ExecuteReader())
+                                {
+                                     while (reader.Read())
+                                     {
+                                          result = reader.GetInt32(0);
+                                     }
+                                }
+                           }
+                      }
+                 }
+            }
+            catch (Exception eSql)
+            {
+                 Debug.WriteLine("Exception: " + eSql.Message);
+            }
+            if (result == 1)
+            {
+                 return true;
+            }
+            else
+            {
+                 return false;
+            }
         }
     }
 }

@@ -36,10 +36,16 @@ namespace CookingCurriculum
             // set the user's name
             User.name = NameTextBox.Text;
             //add user to DB
-            int dbQueryStatus = DBConnection.AddUser(User.name);
-            if (dbQueryStatus < 0) { Debug.WriteLine("Error:RegisterUserFailed"); }
-            
-
+            if (DBConnection.doesUsernameExist(User.name))
+            {
+                 User.userID = DBConnection.GetUserIDFromName(User.name);
+            }
+            else
+            {
+                 User.userID = DBConnection.AddUser(User.name);
+                 if (User.userID < 0) { Debug.WriteLine("Error:RegisterUserFailed"); }
+            }
+                    
             // navigate to the main curriculum page
             Frame rootFrame = Window.Current.Content as Frame;
             rootFrame.Navigate(typeof(MainPage));

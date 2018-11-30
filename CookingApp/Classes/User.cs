@@ -10,6 +10,7 @@ namespace CookingCurriculum
 {
     public static class User
     {
+        public static int userID;
         public static string name;
         // can also later add email, skills, preferences, etc
 
