@@ -17,7 +17,7 @@ namespace CookingCurriculum
 
         // call this function from App.xaml.cs when the app first starts
         // --- EDIT THIS ---  check if the user exists in the database
-        public static void generateUser()
+        public static void GenerateUser()
         {
             startedCoursesTitles = new List<string>();
         }

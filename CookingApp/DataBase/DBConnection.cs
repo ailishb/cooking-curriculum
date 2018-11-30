@@ -286,6 +286,31 @@ namespace CookingCurriculum.DataBase
             }
             return -1;
         }
+        //query will eventually be expanded for use in account creation
+        public static int AddUser(string name)
+        {
+            string query = String.Format("INSERT INTO users VALUES (username= \"{0}\", status=active);", name);
+            try
+            {
+                // send query
+                using (var connection = new MySqlConnection(connectionString))
+                {
+                    connection.Open();
+                    if (connection.State == System.Data.ConnectionState.Open)
+                    {
+                        using (MySqlCommand cmd = new MySqlCommand(query, connection))
+                        {
+                            return 0;
+                        }
+                    }             
+                }
+            }
+            catch (Exception eSql)
+            {
+                Debug.WriteLine("Exception: " + eSql.Message);
+            }
+            return -1;
+        }
     }
 }
 
