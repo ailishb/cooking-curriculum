@@ -16,6 +16,7 @@ using Windows.UI.Xaml.Navigation;
 using CookingCurriculum.Classes;
 using CookingCurriculum.DataBase;
 using System.Collections.ObjectModel;
+using System.Diagnostics;
 // The Blank Page item template is documented at https://go.microsoft.com/fwlink/?LinkId=234238
 
 namespace CookingCurriculum
@@ -81,7 +82,8 @@ namespace CookingCurriculum
             if (courseName != null)
             {
                 //enroll user in selected course(update DB)
-                DBConnection.EnrollUserInCourse(User.name, courseName);
+                int enrollmentStatus = DBConnection.EnrollUserInCourse(courseName);
+                if(enrollmentStatus < 1) { Debug.WriteLine("Error: enrollment failed"); }
                 
                // navigate to the View Recipes page passing it the name of the course
                 Frame rootFrame = Window.Current.Content as Frame;

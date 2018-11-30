@@ -39,7 +39,7 @@ namespace CookingCurriculum
             this.Suspending += OnSuspending;
 
             // generate the user data
-            User.generateUser();
+            User.GenerateUser();
         }
 
         /// <summary>

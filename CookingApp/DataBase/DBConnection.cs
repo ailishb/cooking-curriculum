@@ -20,6 +20,7 @@ namespace CookingCurriculum.DataBase
         public static string password = "tinykittens";
         public static string connectionString = String.Format("Server={0}; database={1}; user={2}; password={3}", server, database, username, password);
 
+        
         // method to return all course descriptions
         public static List<CourseDescription> GetCourseDescriptions()
         {
@@ -188,15 +189,15 @@ namespace CookingCurriculum.DataBase
         }
 
         //query to enroll a user in a selected course
-        public static int EnrollUserInCourse(string uName, string cName)
+        public static int EnrollUserInCourse(string cName)
         {   //get userID and courseID from names
-            int userID = GetUserIDFromName(uName);
+            int userID = GetUserIDFromName(User.name);
             int courseID = GetCourseIDFromName(cName);
 
             if (userID >= 0 && courseID >= 0)
             {
                 //enroll user in course (what is 'status' column for?)
-                string query = String.Format("INSERT INTO userCourseEnrollment (userID, courseID, status) VALUES (\'{0}\', \'{0}\', 'started');", userID, courseID);
+                string query = String.Format("INSERT INTO userCourseEnrollment (enrollmentID, userID, courseID, status) VALUES (0, \'{0}\', \'{1}\', \'Enrolled\');", userID, courseID);
                 try
                 {
                     // send query
@@ -207,8 +208,7 @@ namespace CookingCurriculum.DataBase
                         {
                             using (MySqlCommand cmd = new MySqlCommand(query, connection))
                             {
-                                return 0;
-
+                                return cmd.ExecuteNonQuery();
                             }
                         }
                     }
@@ -221,12 +221,12 @@ namespace CookingCurriculum.DataBase
             }
             else
             {
-                Debug.WriteLine("Error: bad data returned from users or course call");
-                return -1;
+                Debug.WriteLine("Error: course enrollment failed");
             }
+            return -1;
         }
 
-        private static int GetUserIDFromName(string courseName)
+        private static int GetCourseIDFromName(string courseName)
         {
             string query = String.Format("select courseID from course where name = \"{0}\";", courseName);
             try
@@ -256,7 +256,7 @@ namespace CookingCurriculum.DataBase
             }
             return -1;
         }
-        private static int GetCourseIDFromName(string userName)
+        private static int GetUserIDFromName(string userName)
         {
             string query = String.Format("select userID from users where username = \"{0}\";", userName);
             try
@@ -289,7 +289,7 @@ namespace CookingCurriculum.DataBase
         //query will eventually be expanded for use in account creation
         public static int AddUser(string name)
         {
-            string query = String.Format("INSERT INTO users VALUES (username= \"{0}\", status=active);", name);
+            string query = String.Format("INSERT INTO users VALUES (0, \'{0}\', \'Active\');", name);
             try
             {
                 // send query
@@ -300,7 +300,7 @@ namespace CookingCurriculum.DataBase
                     {
                         using (MySqlCommand cmd = new MySqlCommand(query, connection))
                         {
-                            return 0;
+                            return cmd.ExecuteNonQuery();                          
                         }
                     }             
                 }
