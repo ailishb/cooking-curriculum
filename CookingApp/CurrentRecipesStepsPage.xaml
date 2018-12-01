@@ -45,7 +45,7 @@
          
           
         <StackPanel Orientation="Horizontal" Grid.Row="4" VerticalAlignment="Bottom" HorizontalAlignment="Center">
-            <Button Content="Finish" Margin="0,0,0,25" Click="FinishRecipesButton_Click"/>
+            <Button x:Name="FinishButton" Content="Finish" Margin="0,0,0,25" Click="FinishRecipesButton_Click"/>
         </StackPanel>
     </Grid>
 </Page>

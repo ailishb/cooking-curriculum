@@ -100,6 +100,14 @@ namespace CookingCurriculum
                 int currentStep = (((FlipView)sender).SelectedItem as RecipeStep).stepNumber;
 
                 RecipeProgressBar.Value = (currentStep * 100) / totalSteps;
+                if (RecipeProgressBar.Value == 100)
+                {
+                     FinishButton.Visibility = Visibility.Visible;
+                }
+                else
+                {
+                     FinishButton.Visibility = Visibility.Collapsed;
+                }  
             }
             else
             {
