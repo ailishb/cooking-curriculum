@@ -390,6 +390,79 @@ namespace CookingCurriculum.DataBase
                  return false;
             }
         }
+
+        //query to drop a user from a selected course
+        public static int DropCourse(string cName)
+        {   //get userID and courseID from names
+            int userID = GetUserIDFromName(User.name);
+            int courseID = GetCourseIDFromName(cName);
+
+            if (userID >= 0 && courseID >= 0)
+            {
+                //enroll user in course (what is 'status' column for?)
+                string query = String.Format("DELETE FROM userCourseEnrollment WHERE userID = \'{0}\' and courseID = \'{1}\'", userID, courseID);
+                try
+                {
+                    // send query
+                    using (var connection = new MySqlConnection(connectionString))
+                    {
+                        connection.Open();
+                        if (connection.State == System.Data.ConnectionState.Open)
+                        {
+                            using (MySqlCommand cmd = new MySqlCommand(query, connection))
+                            {
+                                return cmd.ExecuteNonQuery();
+                            }
+                        }
+                    }
+                }
+                catch (Exception eSql)
+                {
+                    Debug.WriteLine("Exception: " + eSql.Message);
+                }
+                return -1;
+            }
+            else
+            {
+                Debug.WriteLine("Error: drop course failed");
+            }
+            return -1;
+        }
+
+        // method to return all course descriptions
+        public static List<string> GetStartedCourses(int userID)
+        {
+            string query = String.Format("SELECT c.name FROM course AS c INNER JOIN userCourseEnrollment AS uce ON c.courseID = uce.courseID WHERE uce.userID = \'{0}\'", userID);
+            
+            var courses = new List<string>();
+            try
+            {
+                using (var connection = new MySqlConnection(connectionString))
+                {
+                    connection.Open();
+                    if (connection.State == System.Data.ConnectionState.Open)
+                    {
+                        using (MySqlCommand cmd = new MySqlCommand(query, connection))
+                        {
+                            using (MySqlDataReader reader = cmd.ExecuteReader())
+                            {
+                                while (reader.Read())
+                                {
+                                    courses.Add(reader.GetString(0));
+                                }
+                            }
+                        }
+                    }
+                }
+                return courses;
+            }
+            catch (Exception eSql)
+            {
+                Debug.WriteLine("Exception: " + eSql.Message);
+            }
+            return null;
+        }
+
     }
 }
 

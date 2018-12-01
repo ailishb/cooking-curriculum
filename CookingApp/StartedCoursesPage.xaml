@@ -9,8 +9,34 @@
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
     <Grid>
-        <Button Content="Back" VerticalAlignment="Top" Margin="20" Click="Back_Click"/>
-        <TextBlock Text="Started Courses Page" Margin="50"/>
-        
+        <Grid.RowDefinitions>
+            <RowDefinition Height="77" />
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <Button Name="BackToMainPageButton" Content="Back" FontSize="14" Padding="5" Margin="15,0,0,0" Click="BackMainPageButton_Click" HorizontalAlignment="Left" Height="33" VerticalAlignment="Center" Width="55"/>
+
+        <TextBlock VerticalAlignment="Center" HorizontalAlignment="Center" Text=" Enrolled Courses" FontSize="32" FontWeight="Bold" Margin="0,0,0,0" Height="43" />
+
+        <ListView x:Name="CourseDescriptionListView" Grid.Row="1" ItemsSource="{x:Bind startedCourses, Mode=OneWay}" IsItemClickEnabled="False">
+            <ListView.ItemTemplate>
+                <DataTemplate x:Name="CourseDescriptionDataTemplate" x:DataType="x:String" >
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="5*" MinWidth="200" />
+                            <ColumnDefinition Width="*" MinWidth="125"/>
+                            <ColumnDefinition Width="*" MinWidth="125"/>
+                        </Grid.ColumnDefinitions>
+
+                        <TextBlock Text="{x:Bind}" HorizontalAlignment="Left" Margin="25,0,0,0"/>
+
+                        <Button Name="GoToCourseButton" Content="Go to Course" Grid.Column="1" HorizontalAlignment="Center" Click="GoToCourseButton_Click" />
+
+                        <Button Name="QuitCourseButton" Content="Quit Course" Grid.Column="2" HorizontalAlignment="Center" Click="QuitCourseButton_Click"/>
+                    </Grid>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+
     </Grid>
 </Page>

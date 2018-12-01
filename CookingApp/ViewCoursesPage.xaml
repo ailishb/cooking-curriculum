@@ -13,7 +13,7 @@
      <Grid>
           <Grid.RowDefinitions>
                <RowDefinition Height="77" />
-               <RowDefinition />
+               <RowDefinition Height="*"/>
           </Grid.RowDefinitions>
 
           <Button Name="BackToMainPageButton" Content="Back" FontSize="14" Padding="5" Margin="15,0,0,0" Click="BackMainPageButton_Click" HorizontalAlignment="Left" Height="33" VerticalAlignment="Center" Width="95"/>

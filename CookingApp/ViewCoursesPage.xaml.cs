@@ -84,8 +84,11 @@ namespace CookingCurriculum
                 //enroll user in selected course(update DB)
                 int enrollmentStatus = DBConnection.EnrollUserInCourse(courseName);
                 if(enrollmentStatus < 1) { Debug.WriteLine("Error: enrollment failed"); }
-                
-               // navigate to the View Recipes page passing it the name of the course
+
+                // add the course to the started courses list
+                User.startedCoursesTitles.Add(courseName);
+
+                // navigate to the View Recipes page passing it the name of the course
                 Frame rootFrame = Window.Current.Content as Frame;
                 rootFrame.Navigate(typeof(ViewRecipesPage), courseName);
             }

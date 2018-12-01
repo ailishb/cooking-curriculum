@@ -39,13 +39,23 @@ namespace CookingCurriculum
             if (DBConnection.doesUsernameExist(User.name))
             {
                  User.userID = DBConnection.GetUserIDFromName(User.name);
+
+                // load the users started courses
+                List<string> startedCourses = DBConnection.GetStartedCourses(User.userID);
+                foreach(var item in startedCourses)
+                {
+                    if(!User.startedCoursesTitles.Contains(item))
+                        User.startedCoursesTitles.Add(item);
+                }
             }
             else
             {
                  User.userID = DBConnection.AddUser(User.name);
                  if (User.userID < 0) { Debug.WriteLine("Error:RegisterUserFailed"); }
             }
-                    
+            
+            
+
             // navigate to the main curriculum page
             Frame rootFrame = Window.Current.Content as Frame;
             rootFrame.Navigate(typeof(MainPage));
